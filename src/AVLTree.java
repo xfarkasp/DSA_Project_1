@@ -1,10 +1,10 @@
 import org.jetbrains.annotations.NotNull;
 
 public class AVLTree {
-    AvlNode root;
+    private AvlNode root;
 
-    int getTreeHeight(AvlNode node){ return node != null ? node.height : 0;}
-    AvlNode rightRotation(AvlNode node){
+    private int getTreeHeight(AvlNode node){ return node != null ? node.height : 0;}
+    private AvlNode rightRotation(@NotNull AvlNode node){
         AvlNode firstNode = node.leftChild;
         AvlNode secondNode = firstNode.rightChild;
 
@@ -16,7 +16,7 @@ public class AVLTree {
         return firstNode;
     }
 
-    AvlNode leftRotation(@NotNull AvlNode node){
+    private AvlNode leftRotation(@NotNull AvlNode node){
         AvlNode firstNode = node.rightChild;
         AvlNode secondNode = firstNode.leftChild;
 
@@ -28,14 +28,15 @@ public class AVLTree {
         return firstNode;
     }
 
-    int balance(AvlNode node){
+    private int balance(AvlNode node){
         if (node == null)
             return 0;
 
         return getTreeHeight(node.leftChild) - getTreeHeight(node.rightChild);
         }
 
-    public AvlNode insert(AvlNode node, int key, String value){
+    public void insert(int key, String value){this.root = insert(this.root, key, value);}
+    private AvlNode insert(AvlNode node, int key, String value){
         if (node == null) return (new AvlNode(key, value));
 
         if(key == node.key) return node;
@@ -63,8 +64,6 @@ public class AVLTree {
 
         return node;
     }
-
-
 }
 
 class AvlNode{
