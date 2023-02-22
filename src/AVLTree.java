@@ -35,28 +35,28 @@ public class AVLTree {
         return getTreeHeight(node.leftChild) - getTreeHeight(node.rightChild);
         }
 
-    public void insert(int key, String value){this.root = insert(this.root, key, value);}
-    private AvlNode insert(AvlNode node, int key, String value){
-        if (node == null) return (new AvlNode(key, value));
+    public void insert(Comparable key){this.root = insert(this.root, key);}
+    private AvlNode insert(AvlNode node, Comparable key){
+        if (node == null) return (new AvlNode(key));
 
-        if (key < node.key) node.leftChild = insert(node.leftChild, key, value);
-        else if(key > node.key) node.rightChild = insert(node.rightChild, key, value);
+        if (key.compareTo(node.key) < 0) node.leftChild = insert(node.leftChild, key);
+        else if(key.compareTo(node.key) > 0) node.rightChild = insert(node.rightChild, key);
         else return node;
 
         node.height = 1 + Math.max(getTreeHeight(node.leftChild), getTreeHeight(node.rightChild));
 
         int treeBalance = balance(node);
 
-        if(treeBalance > 1 && key < node.leftChild.key) return  rightRotation(node);
+        if(treeBalance > 1 && key.compareTo(node.leftChild.key) < 0) return  rightRotation(node);
 
-        if(treeBalance < -1 && key > node.rightChild.key) return leftRotation(node);
+        if(treeBalance < -1 && key.compareTo(node.rightChild.key) > 0) return leftRotation(node);
 
-        if (treeBalance > 1 && key > node.leftChild.key){
+        if (treeBalance > 1 && key.compareTo(node.leftChild.key) > 0){
             node.leftChild = leftRotation(node.leftChild);
             return rightRotation(node);
         }
 
-        if(treeBalance < -1 && key < node.rightChild.key){
+        if(treeBalance < -1 && key.compareTo(node.rightChild.key) < 0){
             node.rightChild = rightRotation(node.rightChild);
             return leftRotation(node);
         }
@@ -64,15 +64,15 @@ public class AVLTree {
         return node;
     }
 
-    public void delete(int key){
+    public void delete(Comparable key){
         this.root = delete(this.root, key);
     }
-    AvlNode delete(AvlNode node, int key){
+    AvlNode delete(AvlNode node, Comparable key){
         if(node == null) return node;
 
-        if(key < node.key){node.leftChild = delete(node.leftChild, key);}
+        if(key.compareTo(node.key) < 0){node.leftChild = delete(node.leftChild, key);}
 
-        else if (key > node.key){node.rightChild = delete(node.rightChild, key);}
+        else if (key.compareTo(node.key) > 0){node.rightChild = delete(node.rightChild, key);}
 
         else{
             if((node.leftChild == null) || (node.rightChild == null)){
@@ -117,18 +117,18 @@ public class AVLTree {
         return current;
     }
 
-    public boolean search(int key){
+    public boolean search(Comparable key){
         AvlNode tmp = search(this.root, key);
         return tmp.key == key;
     }
-    private AvlNode search(AvlNode node,int key){
+    private AvlNode search(AvlNode node,Comparable key){
         if(node == null) return node;
 
-        if(key < node.key){
+        if(key.compareTo(node.key) < 0){
             node.leftChild = search(node.leftChild, key);
             if(node.leftChild != null && node.leftChild.key == key) return node.leftChild;}
 
-        else if (key > node.key){
+        else if (key.compareTo(node.key) > 0){
             node.rightChild = search(node.rightChild, key);
             if(node.rightChild != null && node.rightChild.key == key) return node.rightChild;
         }
@@ -138,7 +138,7 @@ public class AVLTree {
 }
 
 class AvlNode{
-    protected  int key;
+    protected  Comparable key;
     protected int height;
     protected String value;
     protected AvlNode leftChild;
@@ -149,6 +149,12 @@ class AvlNode{
         this.value = value;
         this.height = 1;
     }
+
+    AvlNode(Comparable key){
+        this.key = key;
+        this.height = 1;
+    }
+
 }
 
 
