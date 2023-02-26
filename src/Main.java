@@ -38,7 +38,19 @@ public class Main {
         nimloth.insert("u");
         nimloth.insert("holica");
 
+        nimloth.search("penis");
+        nimloth.search("kokot");
+        nimloth.search("pica");
+        nimloth.search("u");
+        nimloth.search("holica");
+
         nimloth.delete("pica");
         nimloth.delete("penis");
+
+        nimloth.search("penis");
+        nimloth.search("kokot");
+        nimloth.search("pica");
+        nimloth.search("U");
+        nimloth.search("holica");
     }
 }

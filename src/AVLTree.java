@@ -126,13 +126,11 @@ public class AVLTree {
 
         if(key.compareTo(node.key) < 0){
             node.leftChild = search(node.leftChild, key);
-            if(node.leftChild != null && node.leftChild.key == key) return node.leftChild;}
-
-        else if (key.compareTo(node.key) > 0){
+            if(node.leftChild != null && node.leftChild.key == key) {return node.leftChild;}
+        } else if (key.compareTo(node.key) > 0){
             node.rightChild = search(node.rightChild, key);
-            if(node.rightChild != null && node.rightChild.key == key) return node.rightChild;
+            if(node.rightChild != null && node.rightChild.key == key) {return node.rightChild;}
         }
-
         return node;
     }
 }

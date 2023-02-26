@@ -94,6 +94,28 @@ public class AATree {
         }
         return node;
     }
+    public boolean search(Comparable key){
+        AANode tmp = search(this.root, key);
+        if(tmp.key == key){
+            System.out.println(key + " is located in the AATree.");
+            return true;
+        }
+        System.out.println(key + " is not located in the AATree.");
+        return false;
+    }
+
+    private AANode search(AANode node, Comparable key){
+        if(node == null || node.key == null) return node;
+        //AANode tmp = node;
+        if(key.compareTo(node.key) < 0){
+            node = search(node.leftChild, key);
+            if(node.leftChild != null && node.leftChild.key == key) {return node.leftChild;}
+        } else if (key.compareTo(node.key) > 0) {
+            node = search(node.rightChild, key);
+            if(node.rightChild != null && node.rightChild.key == key) {return node.rightChild;}
+        }
+        return node;
+    }
 
 }
 class AANode{
