@@ -41,15 +41,19 @@ public class AVLTree implements DefaultTree{
         }
 
     public void insert(Comparable key){
+        System.out.println("Inserting key: " + key + " to AVL tree.");
         this.root = insert(this.root, key);
-            //printTree();
+        printTree();
     }
     private AvlNode insert(AvlNode node, Comparable key){
         if (node == null) return (new AvlNode(key));
 
         if (key.compareTo(node.key) < 0) node.leftChild = insert(node.leftChild, key);
         else if(key.compareTo(node.key) > 0) node.rightChild = insert(node.rightChild, key);
-        else return node;
+        else{
+            System.out.println("Can not add " + key +" to the tree, the key is already inserted!");
+            return node;
+        }
 
         node.height = 1 + Math.max(getTreeHeight(node.leftChild), getTreeHeight(node.rightChild));
 
@@ -128,27 +132,20 @@ public class AVLTree implements DefaultTree{
     public boolean search(Comparable key){
         AvlNode tmp = this.root;
         while (tmp != null){
-            if(tmp.key == key)
+            if(tmp.key.compareTo(key) == 0){
+                //System.out.println(key + " is located in the AVL tree");
                 return true;
+            }
+
             if(tmp.key.compareTo(key) < 0)
                 tmp = tmp.rightChild;
             else
                 tmp = tmp.leftChild;
         }
+        //System.out.println(key + " is not located in the AVL tree");
         return false;
     }
-    /*private AvlNode search(AvlNode node,Comparable key){
-        if(node == null) return node;
 
-        if(key.compareTo(node.key) < 0){
-            node.leftChild = search(node.leftChild, key);
-            if(node.leftChild != null && node.leftChild.key == key) {return node.leftChild;}
-        } else if (key.compareTo(node.key) > 0){
-            node.rightChild = search(node.rightChild, key);
-            if(node.rightChild != null && node.rightChild.key == key) {return node.rightChild;}
-        }
-        return node;
-    }*/
     //preorder
     public void printTree(){
         System.out.println("AVL Tree Preorder:");
