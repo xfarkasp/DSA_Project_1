@@ -35,7 +35,10 @@ public class AVLTree {
         return getTreeHeight(node.leftChild) - getTreeHeight(node.rightChild);
         }
 
-    public void insert(Comparable key){this.root = insert(this.root, key);}
+    public void insert(Comparable key){
+        this.root = insert(this.root, key);
+            //printTree();
+    }
     private AvlNode insert(AvlNode node, Comparable key){
         if (node == null) return (new AvlNode(key));
 
@@ -133,6 +136,21 @@ public class AVLTree {
         }
         return node;
     }
+    //preorder
+    public void printTree(){
+        System.out.println("AVL Tree Preorder:");
+        printTree(this.root);
+        System.out.println(" ");
+    }
+
+    void printTree(AvlNode node){
+        if(node == null){return;}
+        System.out.print(node.key + " ");
+        printTree(node.leftChild);
+        printTree(node.rightChild);
+    }
+
+
 }
 
 class AvlNode{

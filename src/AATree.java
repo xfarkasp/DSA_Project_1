@@ -45,6 +45,7 @@ public class AATree {
 
     public void insert(Comparable key){
         this.root = insert(key, root);
+        //printTree();
     }
 
     private AANode insert(Comparable key, AANode node){
@@ -61,6 +62,7 @@ public class AATree {
     public void delete(Comparable key){
         delNode = nullNode;
         root = delete(key, root);
+        //printTree();
     }
 
     private AANode delete(Comparable key, AANode node){
@@ -116,6 +118,19 @@ public class AATree {
         }
         return node;
     }
+    //preorder
+    public void printTree(){
+        System.out.println("AATree preorder: ");
+        printTree(this.root);
+        System.out.println(" ");
+    }
+
+    void printTree(AANode node){
+        if(node == null){return;}
+        System.out.print(node.key + " ");
+        printTree(node.leftChild);
+        printTree(node.rightChild);
+    }
 
 }
 class AANode{
@@ -134,6 +149,4 @@ class AANode{
         this.leftChild = leftChild;
         this.level = 1;
     }
-
-
 }
