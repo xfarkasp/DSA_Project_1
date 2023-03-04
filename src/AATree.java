@@ -1,8 +1,14 @@
-public class AATree {
+public class AATree implements DefaultTree{
     private  AANode root;
     private static AANode delNode;
     private static AANode lastNode;
     private static final AANode nullNode;
+
+    private String treeType = "AA Tree";
+
+    public String getTreeType() {
+        return treeType;
+    }
 
     static {
         nullNode = new AANode(null);
@@ -130,6 +136,10 @@ public class AATree {
         System.out.print(node.key + " ");
         printTree(node.leftChild);
         printTree(node.rightChild);
+    }
+
+    public void emptyTree(){
+        this.root = nullNode;
     }
 
 }

@@ -1,8 +1,13 @@
 
 
-public class AVLTree {
+public class AVLTree implements DefaultTree{
     private AvlNode root;
 
+    private String treeType = "AVL Tree";
+
+    public String getTreeType() {
+        return treeType;
+    }
     private int getTreeHeight(AvlNode node){ return node != null ? node.height : 0;}
     private AvlNode rightRotation(AvlNode node){
         AvlNode firstNode = node.leftChild;
@@ -121,10 +126,18 @@ public class AVLTree {
     }
 
     public boolean search(Comparable key){
-        AvlNode tmp = search(this.root, key);
-        return tmp.key == key;
+        AvlNode tmp = this.root;
+        while (tmp != null){
+            if(tmp.key == key)
+                return true;
+            if(tmp.key.compareTo(key) < 0)
+                tmp = tmp.rightChild;
+            else
+                tmp = tmp.leftChild;
+        }
+        return false;
     }
-    private AvlNode search(AvlNode node,Comparable key){
+    /*private AvlNode search(AvlNode node,Comparable key){
         if(node == null) return node;
 
         if(key.compareTo(node.key) < 0){
@@ -135,7 +148,7 @@ public class AVLTree {
             if(node.rightChild != null && node.rightChild.key == key) {return node.rightChild;}
         }
         return node;
-    }
+    }*/
     //preorder
     public void printTree(){
         System.out.println("AVL Tree Preorder:");
@@ -149,6 +162,8 @@ public class AVLTree {
         printTree(node.leftChild);
         printTree(node.rightChild);
     }
+
+    public void emptyTree(){this.root = null;}
 
 
 }
