@@ -78,9 +78,13 @@ public class AVLTree implements DefaultTree{
 
     public void delete(Comparable key){
         this.root = delete(this.root, key);
+        printTree();
     }
     AvlNode delete(AvlNode node, Comparable key){
-        if(node == null) return node;
+        if(node == null) {
+            System.out.println(key + " can not be deleted, it is no located in the AVL tree!");
+            return node;
+        }
 
         if(key.compareTo(node.key) < 0){node.leftChild = delete(node.leftChild, key);}
 
@@ -96,8 +100,10 @@ public class AVLTree implements DefaultTree{
                     tmp = node;
                     node = null;
                 }else{node = tmp;}
+
             }
             else{
+                System.out.println(key + " was deleted from the tree.");
                 AvlNode tmp = minNode(node.rightChild);
                 node.key = tmp.key;
                 node.rightChild = delete(node.rightChild, tmp.key);
@@ -120,6 +126,7 @@ public class AVLTree implements DefaultTree{
             node.rightChild = rightRotation(node.rightChild);
             return leftRotation(node);
         }
+
         return node;
     }
 
@@ -133,7 +140,7 @@ public class AVLTree implements DefaultTree{
         AvlNode tmp = this.root;
         while (tmp != null){
             if(tmp.key.compareTo(key) == 0){
-                //System.out.println(key + " is located in the AVL tree");
+                System.out.println(key + " is located in the AVL tree");
                 return true;
             }
 
@@ -142,7 +149,7 @@ public class AVLTree implements DefaultTree{
             else
                 tmp = tmp.leftChild;
         }
-        //System.out.println(key + " is not located in the AVL tree");
+        System.out.println(key + " is not located in the AVL tree");
         return false;
     }
 

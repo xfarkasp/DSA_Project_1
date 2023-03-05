@@ -189,22 +189,54 @@ public class Test {
         ygdrasil.insert(1000);
         ygdrasil.insert(963);
 
-        ygdrasil.search(1);
-        ygdrasil.search(1);
-        ygdrasil.search(5);
-        ygdrasil.search(89);
-        ygdrasil.search(56);
-        ygdrasil.search(9);
-
-        ygdrasil.delete(9);
-        ygdrasil.delete(56);
-
-        ygdrasil.search(1);
+        /*ygdrasil.search(7);
+        ygdrasil.search(8);
         ygdrasil.search(1);
         ygdrasil.search(5);
         ygdrasil.search(89);
-        ygdrasil.search(56);
+        ygdrasil.search(560);
+        ygdrasil.search(999);
+        ygdrasil.search(890);
         ygdrasil.search(9);
+        ygdrasil.search(560);
+        ygdrasil.search(47);
+        ygdrasil.search(473);
+        ygdrasil.search(10);
+        ygdrasil.search(77);
+        ygdrasil.search(483);
+        ygdrasil.search(56871);
+        ygdrasil.search(963);
+        ygdrasil.search(1000);
+        ygdrasil.search(22);
+        ygdrasil.search(2);*/
+
+        ygdrasil.delete(7);
+        ygdrasil.delete(89);
+        ygdrasil.delete(560);
+        ygdrasil.delete(89);
+        ygdrasil.delete(47);
+        ygdrasil.delete(89);
+        ygdrasil.delete(77);
+        ygdrasil.delete(483);
+        ygdrasil.delete(963);
+        ygdrasil.delete(1000);
+        ygdrasil.delete(963);
+
+        ygdrasil.search(7);
+        ygdrasil.search(1);
+        ygdrasil.search(5);
+        ygdrasil.search(89);
+        ygdrasil.search(560);
+        ygdrasil.search(89);
+        ygdrasil.search(9);
+        ygdrasil.search(560);
+        ygdrasil.search(47);
+        ygdrasil.search(89);
+        ygdrasil.search(77);
+        ygdrasil.search(483);
+        ygdrasil.search(963);
+        ygdrasil.search(1000);
+        ygdrasil.search(963);
 
 
 
