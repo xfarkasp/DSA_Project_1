@@ -4,23 +4,23 @@ import java.util.Collections;
 
 public class Test {
 
-    public static void insertTest(DefaultTree tree, ArrayList<Integer> dataSet) throws IOException {
+    public static void insertTest(DefaultTree tree, ArrayList<Integer> dataSet){
         //start inserting to
         for(int i = 0; i < dataSet.size(); i++){
             tree.insert(dataSet.get(i));
         }
     }
 
-    public static void deleteTest(DefaultTree tree, ArrayList<Integer> dataSet) throws IOException {
+    public static void deleteTest(DefaultTree tree, ArrayList<Integer> dataSet){
 
-        //start inserting to
+        //start deleting
         for(int i = 0; i < dataSet.size(); i++){
             tree.delete(dataSet.get(i));
         }
     }
 
-    public static void searchTest(DefaultTree tree, ArrayList<Integer> dataSet) throws IOException {
-        //start inserting to
+    public static void searchTest(DefaultTree tree, ArrayList<Integer> dataSet){
+        //start search
         for(int i = 0; i < dataSet.size(); i++){
             tree.search(dataSet.get(i));
         }
@@ -170,24 +170,24 @@ public class Test {
             }
        } catch (IOException e) {e.printStackTrace();}
     }
-    public static void main(String[] args) throws IOException {
-
-        AVLTree ygdrasil = new AVLTree();
-        ygdrasil.insert(7);
-        ygdrasil.insert(1);
-        ygdrasil.insert(5);
-        ygdrasil.insert(89);
-        ygdrasil.insert(560);
-        ygdrasil.insert(89);
-        ygdrasil.insert(9);
-        ygdrasil.insert(560);
-        ygdrasil.insert(47);
-        ygdrasil.insert(89);
-        ygdrasil.insert(77);
-        ygdrasil.insert(483);
-        ygdrasil.insert(963);
-        ygdrasil.insert(1000);
-        ygdrasil.insert(963);
+    public static void main(String[] args){
+        try {
+            AVLTree ygdrasil = new AVLTree();
+            ygdrasil.insert(7);
+            ygdrasil.insert(1);
+            ygdrasil.insert(5);
+            ygdrasil.insert(89);
+            ygdrasil.insert(560);
+            ygdrasil.insert(89);
+            ygdrasil.insert(9);
+            ygdrasil.insert(560);
+            ygdrasil.insert(47);
+            ygdrasil.insert(89);
+            ygdrasil.insert(77);
+            ygdrasil.insert(483);
+            ygdrasil.insert(963);
+            ygdrasil.insert(1000);
+            ygdrasil.insert(963);
 
         /*ygdrasil.search(7);
         ygdrasil.search(8);
@@ -210,44 +210,39 @@ public class Test {
         ygdrasil.search(22);
         ygdrasil.search(2);*/
 
-        ygdrasil.delete(7);
-        ygdrasil.delete(89);
-        ygdrasil.delete(560);
-        ygdrasil.delete(89);
-        ygdrasil.delete(47);
-        ygdrasil.delete(89);
-        ygdrasil.delete(77);
-        ygdrasil.delete(483);
-        ygdrasil.delete(963);
-        ygdrasil.delete(1000);
-        ygdrasil.delete(963);
+            ygdrasil.delete(7);
+            ygdrasil.delete(89);
+            ygdrasil.delete(560);
+            ygdrasil.delete(89);
+            ygdrasil.delete(47);
+            ygdrasil.delete(89);
+            ygdrasil.delete(77);
+            ygdrasil.delete(483);
+            ygdrasil.delete(963);
+            ygdrasil.delete(1000);
+            ygdrasil.delete(963);
 
-        ygdrasil.search(7);
-        ygdrasil.search(1);
-        ygdrasil.search(5);
-        ygdrasil.search(89);
-        ygdrasil.search(560);
-        ygdrasil.search(89);
-        ygdrasil.search(9);
-        ygdrasil.search(560);
-        ygdrasil.search(47);
-        ygdrasil.search(89);
-        ygdrasil.search(77);
-        ygdrasil.search(483);
-        ygdrasil.search(963);
-        ygdrasil.search(1000);
-        ygdrasil.search(963);
-
-
+            ygdrasil.search(7);
+            ygdrasil.search(1);
+            ygdrasil.search(5);
+            ygdrasil.search(89);
+            ygdrasil.search(560);
+            ygdrasil.search(89);
+            ygdrasil.search(9);
+            ygdrasil.search(560);
+            ygdrasil.search(47);
+            ygdrasil.search(89);
+            ygdrasil.search(77);
+            ygdrasil.search(483);
+            ygdrasil.search(963);
+            ygdrasil.search(1000);
+            ygdrasil.search(963);
 
 
+            Test.treeTest(ygdrasil, "AVLTest.txt");
 
-
-
-        Test.treeTest(ygdrasil, "AVLTest.txt");
-
-        AATree nimloth = new AATree();
-        Test.treeTest(nimloth, "AATest.txt");
+            AATree nimloth = new AATree();
+            Test.treeTest(nimloth, "AATest.txt");
 
        /* ygdrasil.insert("pain");
         ygdrasil.insert("dd");
@@ -284,7 +279,7 @@ public class Test {
 //
 //        ygdrasil.printTree();
 
-        //Test.treeTest(ygdrasil);
+            //Test.treeTest(ygdrasil);
 
 
         /*ygdrasil.search("pain");
@@ -293,7 +288,6 @@ public class Test {
         ygdrasil.search("pais");
         ygdrasil.search("p");
         ygdrasil.search("abcd");*/
-
 
 
 //        AATree nimloth = new AATree();
@@ -322,5 +316,9 @@ public class Test {
 //        nimloth.search(89);
 //        nimloth.search(56);
 //        nimloth.search(9);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

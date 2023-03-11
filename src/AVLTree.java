@@ -10,6 +10,7 @@ public class AVLTree implements DefaultTree{
     }
     private int getTreeHeight(AvlNode node){ return node != null ? node.height : 0;}
     private AvlNode rightRotation(AvlNode node){
+        System.out.println("Preforming a right rotation of the AVL tre.");
         AvlNode firstNode = node.leftChild;
         AvlNode secondNode = firstNode.rightChild;
 
@@ -22,6 +23,7 @@ public class AVLTree implements DefaultTree{
     }
 
     private AvlNode leftRotation(AvlNode node){
+        System.out.println("Preforming a left rotation of the AVL tre.");
         AvlNode firstNode = node.rightChild;
         AvlNode secondNode = firstNode.leftChild;
 
@@ -36,7 +38,6 @@ public class AVLTree implements DefaultTree{
     private int balance(AvlNode node){
         if (node == null)
             return 0;
-
         return getTreeHeight(node.leftChild) - getTreeHeight(node.rightChild);
         }
 
@@ -80,6 +81,7 @@ public class AVLTree implements DefaultTree{
         this.root = delete(this.root, key);
         printTree();
     }
+
     AvlNode delete(AvlNode node, Comparable key){
         if(node == null) {
             System.out.println(key + " can not be deleted, it is no located in the AVL tree!");
@@ -168,8 +170,6 @@ public class AVLTree implements DefaultTree{
     }
 
     public void emptyTree(){this.root = null;}
-
-
 }
 
 class AvlNode{

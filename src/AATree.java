@@ -56,8 +56,8 @@ public class AATree implements DefaultTree{
 
     private AANode insert(Comparable key, AANode node){
         if(node == nullNode){node = new AANode(key, nullNode, nullNode);}
-        else if(key.compareTo(node.key) < 0){node.leftChild = insert(key, node.leftChild);}
-        else if (key.compareTo(node.key) > 0) {node.rightChild = insert(key, node.rightChild);}
+        else if (key.compareTo(node.key) < 0){node.leftChild = insert(key, node.leftChild);}
+        else if (key.compareTo(node.key) > 0){node.rightChild = insert(key, node.rightChild);}
         else {return node;}
 
         node = skew(node);
