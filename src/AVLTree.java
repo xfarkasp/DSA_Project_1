@@ -175,15 +175,9 @@ public class AVLTree implements DefaultTree{
 class AvlNode{
     protected  Comparable key;
     protected int height;
-    protected String value;
     protected AvlNode leftChild;
     protected AvlNode rightChild;
 
-    AvlNode(int key, String value){
-        this.key = key;
-        this.value = value;
-        this.height = 1;
-    }
 
     AvlNode(Comparable key){
         this.key = key;

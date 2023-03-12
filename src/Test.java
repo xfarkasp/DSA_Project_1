@@ -172,6 +172,27 @@ public class Test {
     }
     public static void main(String[] args){
         try {
+            SeperateChaining chain = new SeperateChaining();
+            chain.insert("pain", 5);
+            chain.insert("pian", 98);
+            chain.insert("naip", 25);
+            chain.insert("naip", 999);
+            chain.insert("naipfffgs", 785);
+            chain.insert("nafdgsdfgip", 265);
+            chain.insert("nhhjbcaip", 275);
+            chain.insert("naiggsczp", 25);
+
+            chain.delete("pain");
+            chain.delete("pian");
+            chain.delete("naip");
+            chain.delete("naip");
+            chain.delete("naipfffgs");
+            chain.delete("nafdgsdfgip");
+            chain.delete("nhhjbcaip");
+            chain.delete("naiggsczp");
+
+
+
             AVLTree ygdrasil = new AVLTree();
             ygdrasil.insert(7);
             ygdrasil.insert(1);
