@@ -1,4 +1,4 @@
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.ArrayList;
 
@@ -10,8 +10,6 @@ public class SeperateChaining {
     private ArrayList<SCNode> bucketList;
     private final double threshHold = 0.75;
 
-    public int getTableSize(){return tableSize;}
-
     private double getLoadFactor(){return Double.valueOf(tableSize) / buckets;}
 
     public SeperateChaining(){
@@ -22,7 +20,8 @@ public class SeperateChaining {
         for(int i = 0; i < this.buckets; i++){this.bucketList.add(null);}
     }
 
-    private int hashing(@NotNull String key){
+    private int hashing(String key){
+        if(key == null){return 0;}
         int hashCode = 0;
         final int hConst = 7;
 
@@ -36,38 +35,25 @@ public class SeperateChaining {
     private void rehash(Operation op){
 
         if(op == Operation.INSERT){
-            if (getLoadFactor() < 0.75){return;}
-
-            ArrayList<SCNode> tmp = bucketList;
-            bucketList = new ArrayList<>();
+            if (getLoadFactor() < 0.75) {return;}
             buckets = buckets * 2;
-            tableSize = 0;
-
-            for(int i = 0; i < buckets; i++){bucketList.add(null);}
-
-            for(SCNode startNode : tmp){
-                while(startNode != null){
-                    insert(startNode.key, startNode.value);
-                    startNode = startNode.next;
-                }
-            }
         }
-        else{
-            double loadFactor = getLoadFactor();
+
+        if(op == Operation.DELETE){
             if (getLoadFactor() > 0.25){return;}
-
-            ArrayList<SCNode> tmp = bucketList;
-            bucketList = new ArrayList<>();
             buckets = buckets / 2;
-            tableSize = 0;
+        }
 
-            for(int i = 0; i < buckets; i++){bucketList.add(null);}
+        ArrayList<SCNode> tmp = bucketList;
+        bucketList = new ArrayList<>();
+        tableSize = 0;
 
-            for(SCNode startNode : tmp){
-                while(startNode != null){
-                    insert(startNode.key, startNode.value);
-                    startNode = startNode.next;
-                }
+        for(int i = 0; i < buckets; i++){bucketList.add(null);}
+
+        for(SCNode startNode : tmp){
+            while(startNode != null){
+                insert(startNode.key, startNode.value);
+                startNode = startNode.next;
             }
         }
     }
@@ -136,10 +122,6 @@ public class SeperateChaining {
         rehash(Operation.DELETE);
         return true;
     }
-
-
-
-
 }
 
 class SCNode{
