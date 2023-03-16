@@ -8,6 +8,12 @@ public class LinearProbing implements HashTable{
     private ArrayList<LPNode> nodeMap;
     private final double threshHoldUp = 0.75;
     private final double threshHoldDown = 0.25;
+    private static final LPNode delNode;
+
+    static {
+        delNode = new LPNode();
+        delNode.flag = LPNode.FLAGS.DELETED;
+    }
 
     public LinearProbing(){
         tableSize = 5;
@@ -73,19 +79,40 @@ public class LinearProbing implements HashTable{
         rehash(SeperateChaining.Operation.INSERT);
     }
 
-    private LPNode search(LPNode node, String key, int hash){
-        while(node != null){
-            if(node.key.equals(key) && node.hash == hash){return node;}
+    private LPNode search(int index, String key){
+
+        LPNode searchNode = nodeMap.get(index);
+        if(!searchNode.key.equals(key)){
+            while(searchNode.flag != LPNode.FLAGS.EMPTY){
+                index++;
+                if(index >= tableSize){index = 0;}
+                searchNode = nodeMap.get(index);
+                if(searchNode.key.equals(key)){return searchNode;}
+            }
+            searchNode = null;
         }
-        return node;
+        return searchNode;
+    }
+
+    private int searchIndex(int index, String key){
+        LPNode searchNode = nodeMap.get(index);
+        if(!searchNode.key.equals(key)){
+            while(searchNode.flag != LPNode.FLAGS.EMPTY){
+                index++;
+                if(index >= tableSize){index = 0;}
+                searchNode = nodeMap.get(index);
+                if(searchNode.key.equals(key)){return index;}
+            }
+            index = Integer.MIN_VALUE;
+        }
+        return index;
     }
 
     @Override
     public boolean search(String key) {
         int index = indexing(key);
         int hash = hashing(key);
-        LPNode startNode = nodeMap.get(index);
-        LPNode searchNode = search(startNode, key, hash);
+        LPNode searchNode = search(index, key);
 
         if(searchNode != null && searchNode.key.equals(key)){
             System.out.println("Key: " + key + " is located in the table.");
@@ -98,6 +125,18 @@ public class LinearProbing implements HashTable{
 
     @Override
     public boolean delete(String key) {
+        int index = indexing(key);
+        int searchNodeIndex = searchIndex(index, key);
+
+        if(searchNodeIndex == Integer.MIN_VALUE){
+            System.out.println("The key is not in the table.");
+            return false;
+        }
+
+        nodeMap.set(searchNodeIndex, delNode);
+        numNodes--;
+        rehash(SeperateChaining.Operation.DELETE);
+
         return false;
     }
 
