@@ -4,14 +4,14 @@ import java.util.Collections;
 
 public class Test {
 
-    public static void insertTest(DefaultTree tree, ArrayList<Integer> dataSet){
+    public static void insertTest(DefaultTree tree, ArrayList<String> dataSet){
         //start inserting to
         for(int i = 0; i < dataSet.size(); i++){
             tree.insert(dataSet.get(i));
         }
     }
 
-    public static void deleteTest(DefaultTree tree, ArrayList<Integer> dataSet){
+    public static void deleteTest(DefaultTree tree, ArrayList<String> dataSet){
 
         //start deleting
         for(int i = 0; i < dataSet.size(); i++){
@@ -19,7 +19,7 @@ public class Test {
         }
     }
 
-    public static void searchTest(DefaultTree tree, ArrayList<Integer> dataSet){
+    public static void searchTest(DefaultTree tree, ArrayList<String> dataSet){
         //start search
         for(int i = 0; i < dataSet.size(); i++){
             tree.search(dataSet.get(i));
@@ -31,7 +31,7 @@ public class Test {
         ) {
             Runtime rt = Runtime.getRuntime();
 
-            String dataPath = "dataSets";
+            String dataPath = "C:\\Users\\lordp\\OneDrive\\Documents\\AkademickaPoda\\2.LS\\DSA\\String";
             File dir = new File(dataPath);
             File[] directoryListing = dir.listFiles();
             if (directoryListing != null) {
@@ -40,8 +40,8 @@ public class Test {
                     String line = null;
 
                     //insert dataset to an array
-                    ArrayList<Integer> dataSet = new ArrayList();
-                    while ((line = br.readLine()) != null) {dataSet.add(Integer.valueOf(line));}
+                    ArrayList<String> dataSet = new ArrayList();
+                    while ((line = br.readLine()) != null) {dataSet.add(line);}
 
                     //INSERTION TESTING
                     //record start time and start memory usage
@@ -172,24 +172,162 @@ public class Test {
     }
     public static void main(String[] args){
         try {
-            SeperateChaining chain = new SeperateChaining();
+
+
+            LinearProbing chain = new LinearProbing();
+            /*String pathKey = "C:\\Users\\lordp\\OneDrive\\Documents\\AkademickaPoda\\2.LS\\DSA\\String\\Strings.txt";
+            String pathValue = "C:\\Users\\lordp\\IdeaProjects\\DSA_Project_1\\dataSets\\6_int_10M.txt";
+
+            BufferedReader br = new BufferedReader(new FileReader(pathKey));
+            String line = null;
+            ArrayList<String> dataSet = new ArrayList();
+            while ((line = br.readLine()) != null) {dataSet.add(line);}
+
+            br = new BufferedReader(new FileReader(pathValue));
+            ArrayList<Integer> dataSetInt = new ArrayList();
+            while ((line = br.readLine()) != null) {dataSetInt.add(Integer.valueOf(line));}
+
+            //INSERTION TESTING
+            //record start time and start memory usage
+            long start1 = System.nanoTime();
+            Runtime runTime = Runtime.getRuntime();
+            //insertTest(tree, dataSet);
+            for(int i = 0; i < dataSet.size(); i++){
+                chain.insert(dataSet.get(i), dataSetInt.get(i));
+            }
+            runTime.gc();
+            double memory =  runTime.totalMemory() - runTime.freeMemory();
+            long end1 = System.nanoTime();
+            double timeSeconds = (end1 - start1) * Math.pow(10, -9);
+
+            //System.out.println(tree.getTreeType() + " INSERTING TEST");
+            System.out.println("Data set used: " + dataSet.size());
+            System.out.println("Execution time: " + timeSeconds + " seconds");
+            System.out.println("Memory usage: " + memory/(1024*1024) + " MB");
+            System.out.println("-----------------------------------------------------------");*/
+
+
             chain.insert("pain", 5);
             chain.insert("pian", 98);
-            chain.insert("naip", 25);
-            chain.insert("naip", 999);
-            chain.insert("naipfffgs", 785);
-            chain.insert("nafdgsdfgip", 265);
-            chain.insert("nhhjbcaip", 275);
-            chain.insert("naiggsczp", 25);
+            chain.insert("adko matko", 25);
+            chain.insert("dusky horvath", 999);
+            chain.insert("slamor the boy without slam", 785);
+            chain.insert("denis mivan", 265);
+            chain.insert("jozo mrozo", 275);
+            chain.insert("zadok", 25);
+
+//            chain.search("pain");
+//            chain.search("pian");
+//            chain.search("adko matko");
+//            chain.search("naip");
+//            chain.search("dusky horvath");
+//            chain.search("slamor the boy without slam");
+//            chain.search("denis mivan");
+//            chain.search("jozo mrozo");
+//            chain.search("zadok");
+//            chain.search("naiggsczp");
 
             chain.delete("pain");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
             chain.delete("pian");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
+            chain.delete("adko matko");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
             chain.delete("naip");
-            chain.delete("naip");
-            chain.delete("naipfffgs");
-            chain.delete("nafdgsdfgip");
-            chain.delete("nhhjbcaip");
+
+            chain.delete("dusky horvath");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
+            chain.delete("slamor the boy without slam");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
+            chain.delete("denis mivan");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
+            chain.delete("jozo mrozo");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
+            chain.delete("zadok");
+            chain.search("pain");
+            chain.search("pian");
+            chain.search("adko matko");
+            chain.search("naip");
+            chain.search("dusky horvath");
+            chain.search("slamor the boy without slam");
+            chain.search("denis mivan");
+            chain.search("jozo mrozo");
+            chain.search("zadok");
+            chain.search("naiggsczp");
+
             chain.delete("naiggsczp");
+
+
 
 
 
@@ -262,7 +400,7 @@ public class Test {
 
             Test.treeTest(ygdrasil, "AVLTest.txt");
 
-            AATree nimloth = new AATree();
+           AATree nimloth = new AATree();
             Test.treeTest(nimloth, "AATest.txt");
 
        /* ygdrasil.insert("pain");
