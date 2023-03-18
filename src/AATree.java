@@ -104,7 +104,7 @@ public class AATree implements DefaultTree{
     }
     public boolean search(Comparable key){
         AANode tmp = search(this.root, key);
-        if(tmp.key.compareTo(key) == 0){
+        if(tmp.key != null && tmp.key.compareTo(key) == 0){
             //System.out.println(key + " is located in the AATree.");
             return true;
         }
