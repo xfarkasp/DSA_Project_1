@@ -126,9 +126,11 @@ public class SeperateChaining implements HashTable{
 
     @Override
     public void emptyTable(){
-        bucketList = new ArrayList<>();
-        buckets = 5;
-        tableSize = 0;
+        this.tableSize = 0;
+        this.buckets = 5;
+        this.bucketList = new ArrayList<>();
+
+        for(int i = 0; i < this.buckets; i++){this.bucketList.add(null);}
     }
 
     @Override
