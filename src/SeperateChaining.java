@@ -2,13 +2,14 @@
 
 import java.util.ArrayList;
 
-public class SeperateChaining {
+public class SeperateChaining implements HashTable{
 
     enum Operation{INSERT, DELETE}
     private int tableSize;
     private int buckets;
     private ArrayList<SCNode> bucketList;
     private final double threshHold = 0.75;
+    private final String tableType = "Seperate Chaining";
 
     private double getLoadFactor(){return Double.valueOf(tableSize) / buckets;}
 
@@ -122,6 +123,23 @@ public class SeperateChaining {
         rehash(Operation.DELETE);
         return true;
     }
+
+    @Override
+    public void emptyTable(){
+        bucketList = new ArrayList<>();
+        buckets = 5;
+        tableSize = 0;
+    }
+
+    @Override
+    public void printTable(){
+        for(int i = 0; i < tableSize; i++)
+            System.out.println("Key" + bucketList.get(i).key + " Value: " + bucketList.get(i).value);
+    }
+
+    @Override
+    public String getTableType(){return tableType;}
+
 }
 
 class SCNode{

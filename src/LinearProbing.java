@@ -9,6 +9,7 @@ public class LinearProbing implements HashTable{
     private final double threshHoldUp = 0.75;
     private final double threshHoldDown = 0.25;
     private static final LPNode delNode;
+    private final String tableType = "LinearProbing";
 
     static {
         delNode = new LPNode();
@@ -141,19 +142,20 @@ public class LinearProbing implements HashTable{
     }
 
     @Override
-    public void emptyTable() {
-
+    public void emptyTable(){
+        nodeMap = new ArrayList<>();
+        tableSize = 0;
+        numNodes = 0;
     }
 
     @Override
-    public void printTable() {
-
+    public void printTable(){
+        for(int i = 0; i < tableSize; i++)
+            System.out.println("Key" + nodeMap.get(i).key + " Value: " + nodeMap.get(i).value);
     }
 
     @Override
-    public String getTableType() {
-        return null;
-    }
+    public String getTableType(){return tableType;}
 }
 
 class LPNode{
