@@ -5,190 +5,99 @@ import java.util.Collections;
 public class Test {
 
     public static void treeEffectivity(DefaultTree tree){
-        tree.insert(7);
-        tree.insert(1);
-        tree.insert(5);
-        tree.insert(89);
-        tree.insert(560);
-        tree.insert(47);
-        tree.insert(89);
-        tree.insert(77);
-        tree.insert(483);
-        tree.insert(963);
-        tree.insert(1000);
-        tree.insert(963);
+        //test insertion and balancing
+        tree.insert("Odysseus");
+        tree.insert("Achilles");
+        tree.insert("Hector");
+        tree.insert("Odysseus"); //duplicate
+        tree.insert("Menelaos");
+        tree.insert("Achilles"); //duplicate
+        tree.insert("Patroclus");
+        tree.insert("Patroclus"); //duplicate
+        tree.insert("Telemachus");
+        tree.insert("Helen");
+        tree.insert("Agamemnon");
 
-        tree.search(7);
-        tree.search(8);
-        tree.search(1);
-        tree.search(5);
-        tree.search(89);
-        tree.search(560);
-        tree.search(999);
-        tree.search(890);
-        tree.search(9);
-        tree.search(560);
-        tree.search(47);
-        tree.search(473);
-        tree.search(10);
-        tree.search(77);
-        tree.search(483);
-        tree.search(56871);
-        tree.search(963);
-        tree.search(1000);
-        tree.search(22);
-        tree.search(2);
+        //search elements
+        tree.search("Odysseus");
+        tree.search("Achilles");
+        tree.search("Hector");
+        tree.search("Ares"); //not present
+        tree.search("Menelaos");
+        tree.search("Agamemnon");
+        tree.search("Artemis");
+        tree.search("Athena"); //not present
+        tree.search("Patroclus");
+        tree.search("Apollo"); //not present
+        tree.search("Telemachus");
+        tree.search("Helen");
 
-        tree.delete(7);
-        tree.delete(89);
-        tree.delete(560);
-        tree.delete(89);
-        tree.delete(47);
-        tree.delete(89);
-        tree.delete(77);
-        tree.delete(483);
-        tree.delete(963);
-        tree.delete(1000);
-        tree.delete(963);
+        //delete elements
+        tree.delete("Patroclus");
+        tree.delete("Ares"); //not present
+        tree.delete("Hector");
+        tree.delete("Athena"); //not present
+        tree.delete("Achilles");
+        tree.delete("Agamemnon ");
 
-        tree.search(7);
-        tree.search(1);
-        tree.search(5);
-        tree.search(89);
-        tree.search(560);
-        tree.search(89);
-        tree.search(9);
-        tree.search(560);
-        tree.search(47);
-        tree.search(89);
-        tree.search(77);
-        tree.search(483);
-        tree.search(963);
-        tree.search(1000);
-        tree.search(963);
+        //search if deleted elements were deleted
+        tree.search("Odysseus");
+        tree.search("Achilles");
+        tree.search("Hector");
+        tree.search("Ares"); //not present
+        tree.search("Menelaos");
+        tree.search("Athena"); //not present
+        tree.search("Patroclus");
+        tree.search("Agamemnon ");
+        tree.search("Apollo"); //not present
+        tree.search("Telemachus");
+        tree.search("Helen");
 
         tree.emptyTree();
     }
     public static void tableEffectivity(HashTable table){
-        table.insert("pain", 5);
-        table.insert("pian", 98);
-        table.insert("adko matko", 25);
-        table.insert("dusky horvath", 999);
-        table.insert("slamor the boy without slam", 785);
-        table.insert("denis mivan", 265);
-        table.insert("jozo mrozo", 275);
-        table.insert("zadok", 25);
+        //test insertion and balancing
+        table.insert("Odysseus", 5);
+        table.insert("Achilles", 8);
+        table.insert("Hector", 3345);
+        table.insert("Odysseus", 95); //duplicate but with different value
+        table.insert("Menelaos", 95234);
+        table.insert("Achilles", 8); //duplicate
+        table.insert("Patroclus", 55);
+        table.insert("Patroclus", 55); //duplicate
+        table.insert("Telemachus", 95);
+        table.insert("Helen", 95);
 
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
+        //search elements
+        table.search("Odysseus");
+        table.search("Achilles");
+        table.search("Hector");
+        table.search("Areas"); //not present
+        table.search("Menelaos");
+        table.search("Athena"); //not present
+        table.search("Patroclus");
+        table.search("Apollo"); //not present
+        table.search("Telemachus");
+        table.search("Helen");
 
-        table.delete("pain");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
+        //delete elements
+        table.delete("Patroclus");
+        table.delete("Areas"); //not present
+        table.delete("Hector");
+        table.delete("Athena"); //not present
+        table.delete("Achilles");
 
-        table.delete("pian");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
-
-        table.delete("adko matko");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
-
-        table.delete("naip");
-
-        table.delete("dusky horvath");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
-
-        table.delete("slamor the boy without slam");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
-
-        table.delete("denis mivan");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
-
-        table.delete("jozo mrozo");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
-
-        table.delete("zadok");
-        table.search("pain");
-        table.search("pian");
-        table.search("adko matko");
-        table.search("naip");
-        table.search("dusky horvath");
-        table.search("slamor the boy without slam");
-        table.search("denis mivan");
-        table.search("jozo mrozo");
-        table.search("zadok");
-        table.search("naiggsczp");
-
-        table.delete("naiggsczp");
+        //search if deleted elements were deleted
+        table.search("Odysseus");
+        table.search("Achilles");
+        table.search("Hector");
+        table.search("Areas"); //not present
+        table.search("Menelaos");
+        table.search("Athena"); //not present
+        table.search("Patroclus");
+        table.search("Apollo"); //not present
+        table.search("Telemachus");
+        table.search("Helen");
 
         table.emptyTable();
     }
@@ -251,6 +160,7 @@ public class Test {
                     ArrayList<String> dataSet = new ArrayList();
                     while ((line = br.readLine()) != null) {dataSet.add(line);}
 
+                    tree.emptyTree();
                     //INSERTION TESTING
                     //record start time and start memory usage
                     long start1 = System.nanoTime();
@@ -406,7 +316,7 @@ public class Test {
                     ArrayList<Integer> dataSetInt = new ArrayList();
                     while ((line = br.readLine()) != null) {dataSetInt.add(Integer.valueOf(line));}
 
-
+                    table.emptyTable();
                     //INSERTION TESTING
                     //record start time and start memory usage
                     long start1 = System.nanoTime();
@@ -539,8 +449,18 @@ public class Test {
     public static void main(String[] args){
         try {
             //path to the data set folder
-            String dataPath = "C:\\Users\\pedro\\IdeaProjects\\DSA1\\dataSets\\String";
-            String intDataPath = "C:\\Users\\pedro\\IdeaProjects\\DSA1\\dataSets\\Int";
+            String dataPath = "C:\\Users\\lordp\\IdeaProjects\\DSA_Project_1\\dataSets\\String";
+            String intDataPath = "C:\\Users\\lordp\\IdeaProjects\\DSA_Project_1\\dataSets\\Int";
+
+
+
+            //AVL tree
+            //create a AvlTree object
+            AVLTree ygdrasil = new AVLTree();
+            //send the AVLtree as parameter to the effectivity function
+            Test.treeEffectivity(ygdrasil);
+            //test the tree on the given datasets
+            Test.treeTest(ygdrasil, dataPath,"AVLTest.txt");
 
             //AA Tree
             //create a AATree object
@@ -549,14 +469,6 @@ public class Test {
             Test.treeEffectivity(nimloth);
             //test the tree on the given datasets
             Test.treeTest(nimloth, dataPath,"AATest.txt");
-
-            //AVL tree
-            //create a AvlTree object
-            AVLTree ygdrasil = new AVLTree();
-            //send the AAtree as parameter to the effectivity function
-            Test.treeEffectivity(ygdrasil);
-            //test the tree on the given datasets
-            Test.treeTest(ygdrasil, dataPath,"AVLTest.txt");
 
             //Seperate Chaining
             SeperateChaining chain = new SeperateChaining();
@@ -571,39 +483,6 @@ public class Test {
             Test.tableEffectivity(probing);
             //test the tree on the given datasets
             Test.tableTest(probing, dataPath, intDataPath, "LinearProbing.txt");
-
-            /*String pathKey = "C:\\Users\\lordp\\OneDrive\\Documents\\AkademickaPoda\\2.LS\\DSA\\String\\Strings.txt";
-            String pathValue = "C:\\Users\\lordp\\IdeaProjects\\DSA_Project_1\\dataSets\\6_int_10M.txt";
-
-            BufferedReader br = new BufferedReader(new FileReader(pathKey));
-            String line = null;
-            ArrayList<String> dataSet = new ArrayList();
-            while ((line = br.readLine()) != null) {dataSet.add(line);}
-
-            br = new BufferedReader(new FileReader(pathValue));
-            ArrayList<Integer> dataSetInt = new ArrayList();
-            while ((line = br.readLine()) != null) {dataSetInt.add(Integer.valueOf(line));}
-
-            //INSERTION TESTING
-            //record start time and start memory usage
-            long start1 = System.nanoTime();
-            Runtime runTime = Runtime.getRuntime();
-            //insertTest(tree, dataSet);
-            for(int i = 0; i < dataSet.size(); i++){
-                chain.insert(dataSet.get(i), dataSetInt.get(i));
-            }
-            runTime.gc();
-            double memory =  runTime.totalMemory() - runTime.freeMemory();
-            long end1 = System.nanoTime();
-            double timeSeconds = (end1 - start1) * Math.pow(10, -9);
-
-            //System.out.println(tree.getTreeType() + " INSERTING TEST");
-            System.out.println("Data set used: " + dataSet.size());
-            System.out.println("Execution time: " + timeSeconds + " seconds");
-            System.out.println("Memory usage: " + memory/(1024*1024) + " MB");
-            System.out.println("-----------------------------------------------------------");*/
-
-
 
         }
         catch (Exception e){

@@ -10,7 +10,7 @@ public class AVLTree implements DefaultTree{
     }
     private int getTreeHeight(AvlNode node){ return node != null ? node.height : 0;}
     private AvlNode rightRotation(AvlNode node){
-        //System.out.println("Preforming a right rotation of the AVL tre.");
+        System.out.println("Preforming a right rotation of the AVL tre.");
         AvlNode firstNode = node.leftChild;
         AvlNode secondNode = firstNode.rightChild;
 
@@ -23,7 +23,7 @@ public class AVLTree implements DefaultTree{
     }
 
     private AvlNode leftRotation(AvlNode node){
-        //System.out.println("Preforming a left rotation of the AVL tre.");
+        System.out.println("Preforming a left rotation of the AVL tre.");
         AvlNode firstNode = node.rightChild;
         AvlNode secondNode = firstNode.leftChild;
 
@@ -38,13 +38,14 @@ public class AVLTree implements DefaultTree{
     private int balance(AvlNode node){
         if (node == null)
             return 0;
+
         return getTreeHeight(node.leftChild) - getTreeHeight(node.rightChild);
         }
 
     public void insert(Comparable key){
-        //System.out.println("Inserting key: " + key + " to AVL tree.");
+        System.out.println("Inserting key: " + key + " to AVL tree.");
         this.root = insert(this.root, key);
-        //printTree();
+        printTree();
     }
     private AvlNode insert(AvlNode node, Comparable key){
         if (node == null) return (new AvlNode(key));
@@ -52,13 +53,14 @@ public class AVLTree implements DefaultTree{
         if (key.compareTo(node.key) < 0) node.leftChild = insert(node.leftChild, key);
         else if(key.compareTo(node.key) > 0) node.rightChild = insert(node.rightChild, key);
         else{
-            //System.out.println("Can not add " + key +" to the tree, the key is already inserted!");
+            System.out.println("Can not add " + key +" to the tree, the key is already inserted!");
             return node;
         }
 
         node.height = 1 + Math.max(getTreeHeight(node.leftChild), getTreeHeight(node.rightChild));
 
         int treeBalance = balance(node);
+        //System.out.println("Tree balance: " + treeBalance);
 
         if(treeBalance > 1 && key.compareTo(node.leftChild.key) < 0) return  rightRotation(node);
 
@@ -78,13 +80,14 @@ public class AVLTree implements DefaultTree{
     }
 
     public void delete(Comparable key){
+        System.out.println("deleting: " + key);
         this.root = delete(this.root, key);
-        //printTree();
+        printTree();
     }
 
     AvlNode delete(AvlNode node, Comparable key){
         if(node == null) {
-            //System.out.println(key + " can not be deleted, it is no located in the AVL tree!");
+            System.out.println(key + " can not be deleted, it is not located in the AVL tree!");
             return node;
         }
 
@@ -117,6 +120,7 @@ public class AVLTree implements DefaultTree{
         node.height = Math.max(getTreeHeight(node.leftChild), getTreeHeight(node.rightChild)) + 1;
 
         int balance = balance(node);
+        System.out.println("Balance: " + balance);
 
         if(balance > 1 && balance(node.leftChild) >= 0){return rightRotation(node);}
         if(balance > 1 && balance(node.leftChild) < 0){
@@ -142,7 +146,7 @@ public class AVLTree implements DefaultTree{
         AvlNode tmp = this.root;
         while (tmp != null){
             if(tmp.key.compareTo(key) == 0){
-                //System.out.println(key + " is located in the AVL tree");
+                System.out.println(key + " is located in the AVL tree");
                 return true;
             }
 
@@ -151,7 +155,7 @@ public class AVLTree implements DefaultTree{
             else
                 tmp = tmp.leftChild;
         }
-        //System.out.println(key + " is not located in the AVL tree");
+        System.out.println(key + " is not located in the AVL tree");
         return false;
     }
 

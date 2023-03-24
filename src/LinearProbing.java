@@ -116,10 +116,10 @@ public class LinearProbing implements HashTable{
         LPNode searchNode = search(index, key);
 
         if(searchNode != null && searchNode.key.equals(key)){
-            System.out.println("Key: " + key + " is located in the table.");
+            //System.out.println("Key: " + key + " is located in the table.");
             return true;
         }
-        System.out.println("Key: " + key + " is not located in the table.");
+        //System.out.println("Key: " + key + " is not located in the table.");
 
         return false;
     }
@@ -143,9 +143,11 @@ public class LinearProbing implements HashTable{
 
     @Override
     public void emptyTable(){
-        nodeMap = new ArrayList<>();
-        tableSize = 0;
+        tableSize = 5;
         numNodes = 0;
+        this.nodeMap = new ArrayList<>();
+
+        for(int i = 0; i < tableSize; i++){nodeMap.add(new LPNode());}
     }
 
     @Override

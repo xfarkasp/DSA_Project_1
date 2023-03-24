@@ -25,6 +25,7 @@ public class AATree implements DefaultTree{
         AANode tmp = node.leftChild;
         node.leftChild = tmp.rightChild;
         tmp.rightChild = node;
+        System.out.println("Left rotation.");
         return tmp;
     }
 
@@ -32,6 +33,7 @@ public class AATree implements DefaultTree{
         AANode tmp = node.rightChild;
         node.rightChild = tmp.leftChild;
         tmp.leftChild = node;
+        System.out.println("Right rotation.");
         return tmp;
     }
 
@@ -39,26 +41,36 @@ public class AATree implements DefaultTree{
        if(node.rightChild.rightChild.level == node.level){
            node = rightRotation(node);
            node.level++;
+           System.out.println("Splitting tree.");
        }
        return node;
     }
 
     private AANode skew(AANode node){
-        if(node.leftChild.level == node.level){node = leftRotation(node);}
+        if(node.leftChild.level == node.level){
+            node = leftRotation(node);
+            System.out.println("Skewing tree.");}
 
         return node;
     }
 
     public void insert(Comparable key){
+        //we start from the root and recursively interate throug the nodes until we find a null node
+        //after inserting and rebalancing
         this.root = insert(key, root);
-        //printTree();
+        printTree();
     }
 
     private AANode insert(Comparable key, AANode node){
+        //if node value is finally null, we found the end of the branch
+        // we create a new node with the inserted key and the children nodes with nullNode value
         if(node == nullNode){node = new AANode(key, nullNode, nullNode);}
+        //if node is not yet null, we found out if we should continiue our search
+        //through the left or right child
         else if (key.compareTo(node.key) < 0){node.leftChild = insert(key, node.leftChild);}
         else if (key.compareTo(node.key) > 0){node.rightChild = insert(key, node.rightChild);}
         else {return node;}
+
 
         node = skew(node);
         node = split(node);
@@ -68,7 +80,7 @@ public class AATree implements DefaultTree{
     public void delete(Comparable key){
         delNode = nullNode;
         root = delete(key, root);
-        //printTree();
+        printTree();
     }
 
     private AANode delete(Comparable key, AANode node){
@@ -105,10 +117,10 @@ public class AATree implements DefaultTree{
     public boolean search(Comparable key){
         AANode tmp = search(this.root, key);
         if(tmp.key != null && tmp.key.compareTo(key) == 0){
-            //System.out.println(key + " is located in the AATree.");
+            System.out.println(key + " is located in the AATree.");
             return true;
         }
-        //System.out.println(key + " is not located in the AATree.");
+        System.out.println(key + " is not located in the AATree.");
         return false;
     }
 
@@ -132,7 +144,7 @@ public class AATree implements DefaultTree{
     }
 
     void printTree(AANode node){
-        if(node == null){return;}
+        if(node == nullNode){return;}
         System.out.print(node.key + " ");
         printTree(node.leftChild);
         printTree(node.rightChild);

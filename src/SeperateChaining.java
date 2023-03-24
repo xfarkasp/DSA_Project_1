@@ -67,7 +67,7 @@ public class SeperateChaining implements HashTable{
         SCNode searchNode = search(startNode, key, hash);
 
         if(searchNode != null){
-            System.out.println("key " + key + " already inserted, updateing it's value to: " + value);
+            //System.out.println("key " + key + " already inserted, updateing it's value to: " + value);
             startNode.value = value;
             return;
         }
@@ -86,10 +86,10 @@ public class SeperateChaining implements HashTable{
         SCNode searchNode = search(startNode, key, hash);
 
         if(searchNode != null && searchNode.key.equals(key)){
-            System.out.println("Key: " + key + " is located in the table.");
+            //System.out.println("Key: " + key + " is located in the table.");
             return true;
         }
-        System.out.println("Key: " + key + " is not located in the table.");
+        //System.out.println("Key: " + key + " is not located in the table.");
         return false;
     }
 
@@ -100,7 +100,6 @@ public class SeperateChaining implements HashTable{
         }
         return node;
     }
-
 
     public boolean delete(String key){
         int index = indexing(key);
@@ -141,7 +140,6 @@ public class SeperateChaining implements HashTable{
 
     @Override
     public String getTableType(){return tableType;}
-
 }
 
 class SCNode{
