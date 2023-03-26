@@ -2,10 +2,8 @@
 
 public class AVLTree implements DefaultTree{
     private AvlNode root;
-
     private String treeType = "AVL Tree";
-
-    public String getTreeType() {
+    public String getTreeType(){
         return treeType;
     }
     private int getTreeHeight(AvlNode node){ return node != null ? node.height : 0;}
@@ -40,7 +38,7 @@ public class AVLTree implements DefaultTree{
             return 0;
 
         return getTreeHeight(node.leftChild) - getTreeHeight(node.rightChild);
-        }
+    }
 
     public void insert(Comparable key){
         System.out.println("Inserting key: " + key + " to AVL tree.");
@@ -60,7 +58,7 @@ public class AVLTree implements DefaultTree{
         node.height = 1 + Math.max(getTreeHeight(node.leftChild), getTreeHeight(node.rightChild));
 
         int treeBalance = balance(node);
-        //System.out.println("Tree balance: " + treeBalance);
+        System.out.println("Tree balance: " + treeBalance);
 
         if(treeBalance > 1 && key.compareTo(node.leftChild.key) < 0) return  rightRotation(node);
 
@@ -108,7 +106,6 @@ public class AVLTree implements DefaultTree{
 
             }
             else{
-                //System.out.println(key + " was deleted from the tree.");
                 AvlNode tmp = minNode(node.rightChild);
                 node.key = tmp.key;
                 node.rightChild = delete(node.rightChild, tmp.key);
@@ -123,11 +120,14 @@ public class AVLTree implements DefaultTree{
         System.out.println("Balance: " + balance);
 
         if(balance > 1 && balance(node.leftChild) >= 0){return rightRotation(node);}
+
+        if(balance < -1 && balance(node.rightChild) <= 0){return leftRotation(node);}
+
         if(balance > 1 && balance(node.leftChild) < 0){
             node.leftChild = leftRotation(node.leftChild);
             return rightRotation(node);
         }
-        if(balance < -1 && balance(node.rightChild) <= 0){return leftRotation(node);}
+
         if(balance < -1 && balance(node.rightChild) > 0){
             node.rightChild = rightRotation(node.rightChild);
             return leftRotation(node);
@@ -182,12 +182,10 @@ class AvlNode{
     protected AvlNode leftChild;
     protected AvlNode rightChild;
 
-
     AvlNode(Comparable key){
         this.key = key;
         this.height = 1;
     }
-
 }
 
 

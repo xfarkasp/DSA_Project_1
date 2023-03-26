@@ -34,24 +34,15 @@ public class Test {
 
         //delete elements
         tree.delete("Patroclus");
+        tree.search("Patroclus"); // search for deleted key
         tree.delete("Ares"); //not present
         tree.delete("Hector");
+        tree.search("Hector"); // search for deleted key
         tree.delete("Athena"); //not present
         tree.delete("Achilles");
-        tree.delete("Agamemnon ");
-
-        //search if deleted elements were deleted
-        tree.search("Odysseus");
-        tree.search("Achilles");
-        tree.search("Hector");
-        tree.search("Ares"); //not present
-        tree.search("Menelaos");
-        tree.search("Athena"); //not present
-        tree.search("Patroclus");
-        tree.search("Agamemnon ");
-        tree.search("Apollo"); //not present
-        tree.search("Telemachus");
-        tree.search("Helen");
+        tree.search("Achilles"); // search for deleted key
+        tree.delete("Agamemnon");
+        tree.search("Agamemnon "); // search for deleted key
 
         tree.emptyTree();
     }
@@ -80,24 +71,16 @@ public class Test {
         table.search("Telemachus");
         table.search("Helen");
 
+        System.out.println();
+
         //delete elements
         table.delete("Patroclus");
         table.delete("Areas"); //not present
         table.delete("Hector");
         table.delete("Athena"); //not present
         table.delete("Achilles");
-
-        //search if deleted elements were deleted
-        table.search("Odysseus");
-        table.search("Achilles");
-        table.search("Hector");
-        table.search("Areas"); //not present
-        table.search("Menelaos");
-        table.search("Athena"); //not present
-        table.search("Patroclus");
-        table.search("Apollo"); //not present
-        table.search("Telemachus");
-        table.search("Helen");
+        table.delete("Helen");
+        table.delete("Menelaos");
 
         table.emptyTable();
     }
@@ -449,9 +432,8 @@ public class Test {
     public static void main(String[] args){
         try {
             //path to the data set folder
-            String dataPath = "C:\\Users\\lordp\\IdeaProjects\\DSA_Project_1\\dataSets\\String";
-            String intDataPath = "C:\\Users\\lordp\\IdeaProjects\\DSA_Project_1\\dataSets\\Int";
-
+            String dataPath = "C:\\Users\\pedro\\IdeaProjects\\DSA1\\dataSets\\String";
+            String intDataPath = "C:\\Users\\pedro\\IdeaProjects\\DSA1\\dataSets\\Int";
 
 
             //AVL tree

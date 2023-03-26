@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 public class SeperateChaining implements HashTable{
@@ -10,9 +8,6 @@ public class SeperateChaining implements HashTable{
     private ArrayList<SCNode> bucketList;
     private final double threshHold = 0.75;
     private final String tableType = "Seperate Chaining";
-
-    private double getLoadFactor(){return Double.valueOf(tableSize) / buckets;}
-
     public SeperateChaining(){
         this.tableSize = 0;
         this.buckets = 5;
@@ -20,7 +15,7 @@ public class SeperateChaining implements HashTable{
 
         for(int i = 0; i < this.buckets; i++){this.bucketList.add(null);}
     }
-
+    private double getLoadFactor(){return Double.valueOf(tableSize) / buckets;}
     private int hashing(String key){
         if(key == null){return 0;}
         int hashCode = 0;
@@ -30,18 +25,18 @@ public class SeperateChaining implements HashTable{
 
         return hashCode;
     }
-
     private int indexing(String key){return Math.abs(hashing(key) % buckets);}
-
     private void rehash(Operation op){
-
         if(op == Operation.INSERT){
             if (getLoadFactor() < 0.75) {return;}
+            System.out.println("Upscaleing from " + buckets + " to " + buckets * 2);
             buckets = buckets * 2;
+
         }
 
         if(op == Operation.DELETE){
             if (getLoadFactor() > 0.25){return;}
+            System.out.println("Downscaleing from " + buckets + " to " + buckets / 2);
             buckets = buckets / 2;
         }
 
@@ -65,9 +60,11 @@ public class SeperateChaining implements HashTable{
         int hash = hashing(key);
         SCNode startNode = bucketList.get(index);
         SCNode searchNode = search(startNode, key, hash);
-
+        if(startNode != null){
+            System.out.println("Collision at index: " + index);
+        }
         if(searchNode != null){
-            //System.out.println("key " + key + " already inserted, updateing it's value to: " + value);
+            System.out.println("key " + key + " already inserted, updateing it's value to: " + value);
             startNode.value = value;
             return;
         }
@@ -77,6 +74,7 @@ public class SeperateChaining implements HashTable{
         bucketList.set(index, insertNode);
         tableSize++;
         rehash(Operation.INSERT);
+        printTable();
     }
 
     public boolean search(String key){
@@ -86,10 +84,10 @@ public class SeperateChaining implements HashTable{
         SCNode searchNode = search(startNode, key, hash);
 
         if(searchNode != null && searchNode.key.equals(key)){
-            //System.out.println("Key: " + key + " is located in the table.");
+            System.out.println("Key: " + key + " is located in the table.");
             return true;
         }
-        //System.out.println("Key: " + key + " is not located in the table.");
+        System.out.println("Key: " + key + " is not located in the table.");
         return false;
     }
 
@@ -115,11 +113,11 @@ public class SeperateChaining implements HashTable{
 
         if(startNode == null){return false;}
 
-
         if(prevNode != null){prevNode.next = startNode.next;}
         else{bucketList.set(index, startNode.next);}
         tableSize--;
         rehash(Operation.DELETE);
+        printTable();
         return true;
     }
 
@@ -134,8 +132,18 @@ public class SeperateChaining implements HashTable{
 
     @Override
     public void printTable(){
-        for(int i = 0; i < tableSize; i++)
-            System.out.println("Key" + bucketList.get(i).key + " Value: " + bucketList.get(i).value);
+        for(int i = 0; i < buckets; i++){
+            SCNode print = bucketList.get(i);
+            if(print != null){
+                System.out.print("Index " + i + ": ");
+                while(print != null){
+                    System.out.print(" Key: " + print.key + " Value: " + print.value + ", ");
+                    print = print.next;
+                }
+                System.out.print("\n");
+            }
+        }
+        System.out.println();
     }
 
     @Override
@@ -152,5 +160,4 @@ class SCNode{
         this.key = key;
         this.value = value;
     }
-
 }

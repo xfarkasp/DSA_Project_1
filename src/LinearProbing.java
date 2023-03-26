@@ -1,13 +1,10 @@
 import java.util.ArrayList;
-
 public class LinearProbing implements HashTable{
 
     enum Operation{INSERT, DELETE}
     private int tableSize;
     private int numNodes;
     private ArrayList<LPNode> nodeMap;
-    private final double threshHoldUp = 0.75;
-    private final double threshHoldDown = 0.25;
     private static final LPNode delNode;
     private final String tableType = "LinearProbing";
 
@@ -31,13 +28,14 @@ public class LinearProbing implements HashTable{
     private void rehash(SeperateChaining.Operation op){
 
         if(op == SeperateChaining.Operation.INSERT){
-            double loadFactor = getLoadFactor();
-            if (getLoadFactor() < threshHoldUp) {return;}
+            if (getLoadFactor() < 0.75) {return;}
+            System.out.println("Upscaling from " + tableSize + " to " + tableSize * 2);
             tableSize = tableSize * 2;
         }
 
         if(op == SeperateChaining.Operation.DELETE){
-            if (getLoadFactor() > threshHoldDown){return;}
+            if (getLoadFactor() > 0.25){return;}
+            System.out.println("Downscaling from " + tableSize + " to " + tableSize / 2);
             tableSize = tableSize / 2;
         }
 
@@ -69,7 +67,16 @@ public class LinearProbing implements HashTable{
         int hash = hashing(key);
         LPNode searchNode = nodeMap.get(index);
 
+        if(searchNode.flag == LPNode.FLAGS.INUSE){
+            System.out.println("Collision at index:" + index);
+        }
         while(searchNode.flag == LPNode.FLAGS.INUSE){
+            if(searchNode.key.equals(key)){
+                System.out.println("The key: " + key + "is already inserted updating value to: " + value);
+                searchNode.value = value;
+                printTable();
+                return;
+            }
             index++;
             if(index >= tableSize){index = 0;}
             searchNode = nodeMap.get(index);
@@ -78,6 +85,7 @@ public class LinearProbing implements HashTable{
         nodeMap.set(index, new LPNode(hash, key, value));
         numNodes++;
         rehash(SeperateChaining.Operation.INSERT);
+        printTable();
     }
 
     private LPNode search(int index, String key){
@@ -116,10 +124,10 @@ public class LinearProbing implements HashTable{
         LPNode searchNode = search(index, key);
 
         if(searchNode != null && searchNode.key.equals(key)){
-            //System.out.println("Key: " + key + " is located in the table.");
+            System.out.println("Key: " + key + " is located in the table.");
             return true;
         }
-        //System.out.println("Key: " + key + " is not located in the table.");
+        System.out.println("Key: " + key + " is not located in the table.");
 
         return false;
     }
@@ -130,14 +138,14 @@ public class LinearProbing implements HashTable{
         int searchNodeIndex = searchIndex(index, key);
 
         if(searchNodeIndex == Integer.MIN_VALUE){
-            System.out.println("The key is not in the table.");
+            System.out.println("The key: " + key + " is not in the table.");
             return false;
         }
 
         nodeMap.set(searchNodeIndex, delNode);
         numNodes--;
         rehash(SeperateChaining.Operation.DELETE);
-
+        printTable();
         return false;
     }
 
@@ -152,8 +160,11 @@ public class LinearProbing implements HashTable{
 
     @Override
     public void printTable(){
-        for(int i = 0; i < tableSize; i++)
-            System.out.println("Key" + nodeMap.get(i).key + " Value: " + nodeMap.get(i).value);
+        for(int i = 0; i < tableSize; i++) {
+            if(nodeMap.get(i).flag == LPNode.FLAGS.INUSE)
+                System.out.println("Index: "+ i + " Key: " + nodeMap.get(i).key + " Value: " + nodeMap.get(i).value);
+        }
+        System.out.println();
     }
 
     @Override
